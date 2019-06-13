@@ -53,11 +53,27 @@ class Lista:
             self.value = tmp_list
         for ind, ele in enumerate(other.value):
             self.value[self.true_length + ind] = ele
-        self.true_length += len(other.value)
+        self.true_length += other.true_length
 
     def insert(self, gdzie, co):
-        #TODO
-        pass
+        if self.true_length + 1 >= len(self.value):
+            tmp_list = self.empty(self.true_length + 2)
+            for ind, ele in enumerate(self.value):
+                tmp_list[ind] = ele
+            self.value = tmp_list
+
+        tmp_list2 = self.empty(self.true_length + 4)
+        for idx in range(0, gdzie + 1):
+            if idx == gdzie:
+                tmp_list2[idx] = co
+                self.true_length += 1
+            else:
+                tmp_list2[idx] = self.value[idx]
+
+        for idx in range(gdzie, self.true_length):
+            tmp_list2[idx + 1] = self.value[idx]
+        self.value = tmp_list2
+
 
     def reverse(self):
         #TODO
@@ -73,14 +89,30 @@ lista1.append(15)
 # print(lista1[1])
 # print(lista1.value)
 lista1[1] = 3
-print(lista1.value)
+# print(lista1.value)
 
 lista2 = Lista()
 lista2.append(2)
 lista2.append(9)
 lista2.append(7)
 lista2.append(5)
-print(lista2.value)
+print(f"lista1 value: {lista1.value}")
+# print(f"lista1 true_length: {lista1.true_length}")
+# print(f"lista2 value: {lista2.value}")
+# print(f"lista2 true_length: {lista2.true_length}")
+# print()
 
 lista1.extend(lista2)
-print(lista1.value)
+# print('po extend:')
+print(f"lista1 value: {lista1.value}")
+# print(f"lista1 true_length: {lista1.true_length}")
+# print(f"lista2 value: {lista2.value}")
+# print(f"lista2 true_length: {lista2.true_length}")
+# print()
+
+lista1.insert(2, 123)
+# print('po insert: ')
+print(f"lista1 value: {lista1.value}")
+# print(f"lista1 true_length: {lista1.true_length}")
+# print(f"lista2 value: {lista2.value}")
+# print(f"lista2 true_length: {lista2.true_length}")
