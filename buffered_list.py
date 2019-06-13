@@ -75,11 +75,9 @@ class Lista:
         self.value = tmp_list2
 
     def reverse(self):
-        for idx in range(0, self.true_length//2):
-            tmp_element = self.value[self.true_length - idx - 1]
-            self.value[self.true_length - idx - 1] = self.value[idx]
-            self.value[idx] = tmp_element
-
+        for idx in range(0, self.true_length // 2):
+            self.value[idx], self.value[self.true_length - idx - 1] = self.value[self.true_length - idx - 1], \
+                                                                      self.value[idx]
 
 
 lista1 = Lista()
