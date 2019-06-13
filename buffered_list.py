@@ -74,10 +74,13 @@ class Lista:
             tmp_list2[idx + 1] = self.value[idx]
         self.value = tmp_list2
 
-
     def reverse(self):
-        #TODO
-        pass
+        for idx in range(0, self.true_length//2):
+            tmp_element = self.value[self.true_length - idx - 1]
+            self.value[self.true_length - idx - 1] = self.value[idx]
+            self.value[idx] = tmp_element
+
+
 
 lista1 = Lista()
 lista1.append(9)
@@ -102,9 +105,9 @@ print(f"lista1 value: {lista1.value}")
 # print(f"lista2 true_length: {lista2.true_length}")
 # print()
 
-lista1.extend(lista2)
+# lista1.extend(lista2)
 # print('po extend:')
-print(f"lista1 value: {lista1.value}")
+# print(f"lista1 value: {lista1.value}")
 # print(f"lista1 true_length: {lista1.true_length}")
 # print(f"lista2 value: {lista2.value}")
 # print(f"lista2 true_length: {lista2.true_length}")
@@ -116,3 +119,9 @@ print(f"lista1 value: {lista1.value}")
 # print(f"lista1 true_length: {lista1.true_length}")
 # print(f"lista2 value: {lista2.value}")
 # print(f"lista2 true_length: {lista2.true_length}")
+
+print(f"lista1 value: {lista1.value}")
+lista1.reverse()
+print('po reverse: ')
+print(f"lista1 value: {lista1.value}")
+# print(f"lista1 true_length: {lista1.true_length}")
