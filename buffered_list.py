@@ -38,6 +38,7 @@ class Lista:
         self.value[self.true_length - 1] = None
         self.true_length -= 1
         if self.true_length < len(self.value) // 2:
+            # TODO: self.empty (not Lista.empty) might be better here.
             tmp_list = Lista.empty(self.true_length + 2)
             for ind in range(self.true_length):
                 tmp_list[ind] = self.value[ind]
@@ -47,21 +48,28 @@ class Lista:
 
     def extend(self, other):
         if self.true_length + other.true_length >= len(self.value):
-            tmp_list = self.empty(self.true_length + len(other.value) + 1)
+            tmp_list = self.empty(self.true_length + len(other.value) + 1) # TODO: why +1 ??
             for ind, ele in enumerate(self.value):
                 tmp_list[ind] = ele
             self.value = tmp_list
         for ind, ele in enumerate(other.value):
+            # TODO: you iterate though None's too. That's useless. And will crush when
             self.value[self.true_length + ind] = ele
         self.true_length += other.true_length
 
-    def insert(self, gdzie, co):
+    def insert(self, gdzie, co):  # TODO: NO POLISH IN A CODE!!!
         if self.true_length + 1 >= len(self.value):
+            # TODO: the policy of elongating the list was different: *2 not +2
+            #  If you insert 1000000 elements with +2 policy you replace the list 500000 times.
+            #  With *2 policy its only 100 times. That's the point of the buffer.
             tmp_list = self.empty(self.true_length + 2)
             for ind, ele in enumerate(self.value):
                 tmp_list[ind] = ele
             self.value = tmp_list
+        # TODO: You elongate the list in few places in code. A helper method (private) would be handy.
 
+        # TODO: WRONG! Don't create another list. It take to much time and memory. Just move elements
+        #  to next positions in the same list.
         tmp_list2 = self.empty(self.true_length + 4)
         for idx in range(0, gdzie + 1):
             if idx == gdzie:
@@ -73,6 +81,7 @@ class Lista:
         for idx in range(gdzie, self.true_length):
             tmp_list2[idx + 1] = self.value[idx]
         self.value = tmp_list2
+        # TODO: you inserted an element but the length is still the same? Boooo ;p
 
     def reverse(self):
         for idx in range(0, self.true_length // 2):
