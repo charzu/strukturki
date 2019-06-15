@@ -27,7 +27,7 @@ class LinkedList:
         return current.value
 
     def __setitem__(self, key, value):
-        #TODO
+        #TODO - Ser item ma ustawiać podaną wartość na istniejącym elemencie o podanym indeksie
         pass
 
     def insert(self, loc, arg):
@@ -45,11 +45,11 @@ class LinkedList:
             current.next.next = tmp_next
 
     def pop(self, *args):
-        # TODO
+        # TODO - deletes last item if no args or deletes strict element with given arg
         pass
 
     def remove(self, value):
-        # TODO
+        # TODO - deletes first element that value is given
         pass
 
 
