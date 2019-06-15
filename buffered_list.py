@@ -59,19 +59,13 @@ class Lista:
         if self.true_length + 1 >= len(self.value):
             self._elongate_list()
 
-        # TODO: WRONG! Don't create another list. It take to much time and memory. Just move elements
-        #  to next positions in the same list.
-        tmp_list2 = self.empty(self.true_length * 2)
-        for idx in range(0, where + 1):
-            if idx == where:
-                tmp_list2[idx] = what
-                self.true_length += 1
+        for idx in range(self.true_length, 0, -1):
+            if idx != where:
+                self.value[idx + 1] = self.value[idx]
             else:
-                tmp_list2[idx] = self.value[idx]
-
-        for idx in range(where, self.true_length):
-            tmp_list2[idx + 1] = self.value[idx]
-        self.value = tmp_list2
+                self.value[idx + 1] = self.value[idx]
+                self.value[idx] = what
+                break
         self.true_length += 1
 
     def reverse(self):
