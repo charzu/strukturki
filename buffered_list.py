@@ -22,7 +22,6 @@ class Lista:
         for ind, ele in enumerate(self.value):
             tmp_list[ind] = ele
         self.value = tmp_list
-        return self.value
 
     def append(self, list_element):
 
@@ -56,16 +55,13 @@ class Lista:
         self.true_length += other.true_length
 
     def insert(self, where, what):
-        if self.true_length + 1 >= len(self.value):
+        if self.true_length + 1 >= len(self.value): ## >
             self._elongate_list()
 
-        for idx in range(self.true_length, 0, -1):
-            if idx != where:
-                self.value[idx + 1] = self.value[idx]
-            else:
-                self.value[idx + 1] = self.value[idx]
+        for idx in range(self.true_length, where-1, -1):
+            self.value[idx + 1] = self.value[idx]
+            if idx == where:
                 self.value[idx] = what
-                break
         self.true_length += 1
 
     def reverse(self):
