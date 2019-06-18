@@ -26,9 +26,11 @@ class LinkedList:
             current = current.next
         return current.value
 
-    def __setitem__(self, key, value):
-        #TODO - Ser item ma ustawiać podaną wartość na istniejącym elemencie o podanym indeksie
-        pass
+    def __setitem__(self, loc, arg):
+        current = self
+        for idx in range(loc):
+            current = current.next
+        current.value = arg
 
     def insert(self, loc, arg):
         if loc == 0:
@@ -63,11 +65,12 @@ element1.append(11)
 # element1.print_elements()
 
 # element1[2]
-element1.insert(0, 111)
-element1.print_elements()
+element1.insert(2, 111)
+# element1.print_elements()
 # element1.next = element2
+element1. __setitem__(5, 1233)
 element1.insert
 # print(dir(element1))
-# print(element1.value)
+element1.print_elements()
 # print(element1.next.value)
 # print(element1.next.next.next.value)
