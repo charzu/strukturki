@@ -1,3 +1,6 @@
+import random
+random.seed(1234)
+
 class BinaryTree:
     def __init__(self, value):
         self.value = value
@@ -25,12 +28,47 @@ class BinaryTree:
                 _next = current.right
         current.setnext(tmp)
 
+    def print(self):
+        if self.left is not None:
+            self.left.print()
+        print(self.value, end=' ')
+        if self.right is not None:
+            self.right.print()
 
+    def check_availability(self, num):
+        _next = self
+        while _next is not None:
+            current = _next
+            if num < current.value:
+                _next = current.left
+            else:
+                _next = current.right
+
+            if current.value == num:
+                return True
+        return False
+
+    def create_tree(self, num_of_elements):
+        for num in range(num_of_elements):
+            self.append(random.randint(0, 20))
+
+    def max_num_of_nods(self, tmp_num=0, max_num=0):
+        tmp_num += 1
+        if tmp_num > max_num:
+            max_num = tmp_num
+        if self.left is not None:
+            max_num = self.left.max_num_of_nods(tmp_num, max_num)
+        if self.right is not None:
+            max_num = self.right.max_num_of_nods(tmp_num, max_num)
+
+        return max_num
+
+    #TODO: pop, usunięcie elementu i dopisanie do jednej galezi innej
+    #TODO: drzewo do ktorego dodaje sie wyraz przez co drzewo sie rozgalezia
 root = BinaryTree(5)
 
-root.append(3)
-print(root.left, root.right, root.value)
-print(root.left.value)
-root.append(7)
-root.append(6)
-print()
+root.create_tree(100)
+root.print()
+print(root.check_availability(4))
+print(root.max_num_of_nods())
+
