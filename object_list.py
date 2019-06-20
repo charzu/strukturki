@@ -11,8 +11,9 @@ class LinkedList:
     def print_elements(self):
         current = self
         while current is not None:
-            print(current.value)
+            print(current.value, end=' ')
             current = current.next
+        print()
 
     def append(self, arg):
         current = self
@@ -47,12 +48,32 @@ class LinkedList:
             current.next.next = tmp_next
 
     def pop(self, *args):
-        # TODO - deletes last item if no args or deletes strict element with given arg
-        pass
+        current = self
+        deleted_item = None
+        if len(args) == 0:
+            current = self
+            while current.next.next is not None:
+                current = current.next
+                if current.next.next is None:
+                    deleted_item = current.next.value
+            current.next = None
+            return deleted_item
 
-    def remove(self, value):
-        # TODO - deletes first element that value is given
-        pass
+        # elif args[0] == 0:
+        #     tmp_next = self.next
+        #     self = tmp_next
+        else:
+            for idx in range(args[0]-1):
+                current = current.next
+            current.next = current.next.next
+
+    def remove(self, arg):
+        current = self
+        while current.next.value != arg:
+            current = current.next
+            if current.next.next is None:
+                raise ValueError('Wrong argument, none elements value equals argument')
+        current.next = current.next.next
 
 
 element1 = LinkedList(6)
@@ -68,9 +89,14 @@ element1.append(11)
 element1.insert(2, 111)
 # element1.print_elements()
 # element1.next = element2
-element1. __setitem__(5, 1233)
-element1.insert
+element1. __setitem__(2, 1233)
+# element1.insert
 # print(dir(element1))
+element1.print_elements()
+print(f"deleted item: {element1.pop()}")
+print(f"deleted item: {element1.pop()}")
+print(f"deleted item: {element1.pop()}")
+# element1.remove(3)
 element1.print_elements()
 # print(element1.next.value)
 # print(element1.next.next.next.value)
