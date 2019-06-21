@@ -1,5 +1,7 @@
 import random
+
 random.seed(1234)
+
 
 class BinaryTree:
     def __init__(self, value):
@@ -50,7 +52,8 @@ class BinaryTree:
 
     def create_tree(self, num_of_elements):
         for num in range(num_of_elements):
-            self.append(random.randint(0, 20))
+            tmp_rnd = random.randint(0, 20)
+            self.append(tmp_rnd)
 
     def max_num_of_nods(self, tmp_num=0, max_num=0):
         tmp_num += 1
@@ -63,12 +66,16 @@ class BinaryTree:
 
         return max_num
 
-    #TODO: pop, usunięcie elementu i dopisanie do jednej galezi innej
-    #TODO: drzewo do ktorego dodaje sie wyraz przez co drzewo sie rozgalezia
+    # def remove(self):
+
+    # TODO: remove, usunięcie elementu i dopisanie do jednej galezi innej
+    # TODO: drzewo do ktorego dodaje sie wyraz przez co drzewo sie rozgalezia
+
+
 root = BinaryTree(5)
 
-root.create_tree(100)
+root.create_tree(11)
 root.print()
+print()
 print(root.check_availability(4))
 print(root.max_num_of_nods())
-
